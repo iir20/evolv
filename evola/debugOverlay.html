@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Evola Debug Overlay</title>
+<style>
+  body {
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.8);
+    color: #0f0;
+    padding: 10px;
+    margin: 0;
+    overflow: hidden;
+  }
+  #debugPanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    border-left: 2px solid #0f0;
+    padding: 10px;
+    overflow-y: auto;
+    z-index: 10000;
+  }
+  h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    border-bottom: 1px solid #0f0;
+    padding-bottom: 4px;
+  }
+  .logEntry {
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+  }
+  #controls {
+    margin-bottom: 10px;
+  }
+  button {
+    background: #0f0;
+    border: none;
+    color: #000;
+    padding: 6px 12px;
+    margin-right: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div id="debugPanel">
+  <h2>Evola Debug Overlay</h2>
+  <div id="controls">
+    <button id="clearLogs">Clear Logs</button>
+  </div>
+  <div id="logContainer"></div>
+</div>
+
+<script>
+  const logContainer = document.getElementById('logContainer');
+  const clearLogsBtn = document.getElementById('clearLogs');
+
+  function logMessage(message) {
+    const entry = document.createElement('div');
+    entry.className = 'logEntry';
+    entry.textContent = message;
+    logContainer.appendChild(entry);
+    logContainer.scrollTop = logContainer.scrollHeight;
+  }
+
+  clearLogsBtn.addEventListener('click', () => {
+    logContainer.innerHTML = '';
+  });
+
+  // Example hooks to capture logs from Evola core systems
+  // These would be called from main.js or petAI.js etc.
+
+  window.EvolaDebug = {
+    logEmotionState: (state) => logMessage('Emotion State: ' + JSON.stringify(state)),
+    logBeliefs: (beliefs) => logMessage('Beliefs: ' + beliefs.join(', ')),
+    logDream: (dream) => logMessage('Dream: ' + dream),
+    logConsciousness: (score) => logMessage('Consciousness Score: ' + score.toFixed(3)),
+    logBiomeEvent: (event) => logMessage('Biome Event: ' + event),
+  };
+
+  // Example: periodically log a heartbeat message
+  setInterval(() => {
+    logMessage('Debug Overlay Active - ' + new Date().toLocaleTimeString());
+  }, 10000);
+</script>
+</body>
+</html>

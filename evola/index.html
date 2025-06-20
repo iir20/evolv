@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evola - Autonomous Pet-Designed Retro 2D World</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: #111;
+      color: #ccc;
+      font-family: monospace, monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #gameCanvas {
+      image-rendering: pixelated;
+      border: 2px solid #666;
+      margin-top: 10px;
+      background-color: #000;
+    }
+    #hud {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 900px;
+      margin-top: 10px;
+    }
+    #hud > div {
+      background: #222;
+      border: 1px solid #444;
+      padding: 10px;
+      width: 280px;
+      height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-size: 12px;
+      color: #eee;
+    }
+    #emotionalChart, #beliefCanvas {
+      background: #111;
+      border: 1px solid #444;
+      display: block;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      margin: 0 0 5px 0;
+      color: #66ccff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Evola - Autonomous Pet-Designed Retro 2D World</h1>
+  <canvas id="gameCanvas" width="640" height="480"></canvas>
+  <div id="hud">
+    <div id="emotionalState">
+      <h2>Emotional State</h2>
+      <canvas id="emotionalChart" width="200" height="100"></canvas>
+    </div>
+    <div id="dreamJournal">
+      <h2>Dream Journal</h2>
+      <div id="dreamEntries"></div>
+    </div>
+    <div id="memoryWeb">
+      <h2>Memory Web</h2>
+      <div id="memoryEntries"></div>
+    </div>
+    <div id="beliefMap">
+      <h2>Belief Map</h2>
+      <canvas id="beliefCanvas" width="200" height="200"></canvas>
+    </div>
+    <div id="glyphTranslator">
+      <h2>Glyph Translator</h2>
+      <div id="glyphOutput"></div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
